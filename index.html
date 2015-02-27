@@ -1,0 +1,148 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>UndoRedo</title>
+		
+		<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+		<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+		<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+		<link rel="manifest" href="/manifest.json">
+		<meta name="msapplication-TileColor" content="#603cba">
+		<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+		<meta name="theme-color" content="#ffffff">
+		
+		<style type="text/css">
+			@import url(http://fonts.googleapis.com/css?family=Open+Sans:700,400);
+		
+			body {
+				width: 100%;
+				background: #eee;
+				margin: 0;
+				font-family: "Open Sans", sans-serif;
+				font-size: medium;
+				color: #444;
+			}
+			
+			#header {
+				background: #fff;
+				text-align: center;
+				box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
+				width: 100%;
+				padding: 24px;
+				box-sizing: border-box;
+				z-index: 2;
+			}
+			
+			#container {
+				width: 100%;
+				z-index: 1;
+				padding: 24px;
+				box-sizing: border-box;
+			}
+			
+			#container .card {
+				width: 100%;
+				box-sizing: border-box;
+				border-bottom: 3px solid #ddd;
+				border-top: 1px solid #ddd;
+				border-left: 1px solid #ddd;
+				border-right: 1px solid #ddd;
+				
+				margin-top: 12px;
+				margin-bottom: 12px;
+				
+				background: #fff;
+				
+				padding: 4px;
+				
+				position: relative;
+			}
+	
+			.se {
+				background: url(img/screenshotsenhanced/bg.jpeg) no-repeat center center fixed !important;
+			}
+			
+			.cover {
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+				height: 150px;
+				overflow: hidden;
+			}
+			
+			#container .card:first-child {
+				margin-top: 0;
+			}
+			
+			#container .card:last-child {
+				margin-bottom: 0;
+			}
+			
+			.highlight {
+				background: #009688 !important;
+				font-weight: 700;
+				color: white;
+				font-size: x-large;
+			}
+			
+			#header > img {
+				height: 150px;
+			}
+			
+			.b {
+				font-weight: 700;
+			}
+			
+			.stub {
+				background: rgba(0, 0, 0, 0.5);
+				padding: 4px;
+				float: left;
+				clear: left;
+			}
+			
+			.projectinfo {
+				margin: 12px;
+				color: white;
+			}
+			
+			.large {
+				font-size: large;
+			}
+			
+			a {
+				text-decoration: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="header">
+			<img src="img/undoredo_icon_transparent_bg.png">
+		</div>
+		
+		<div id="container">
+			<div class="card highlight">
+				Projects
+			</div>
+			
+			<a href="http://www.bit.ly/screenshotsenhanced">
+				<div class="card se cover">
+					<div class="projectinfo">
+						<span class="b stub large">Screenshots Enhanced</span>
+						<span class="stub">Improve the way screenshots work in Minecraft. Clear lag and be able to manage, share and take your pictures faster than ever.</span>
+					</div>
+				</div>
+			</a>
+		</div>
+	</body>
+</html>
