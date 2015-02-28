@@ -21,6 +21,14 @@
 		<meta name="msapplication-TileImage" content="/mstile-144x144.png">
 		<meta name="theme-color" content="#ffffff">
 		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta charset="utf-8">
+		
+		<style type="text/css">
+			/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+			html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+		</style>
+		
 		<style type="text/css">
 			@import url(http://fonts.googleapis.com/css?family=Open+Sans:700,400);
 		
@@ -30,11 +38,11 @@
 				margin: 0;
 				font-family: "Open Sans", sans-serif;
 				font-size: medium;
-				color: #444;
+				color: #fff;
 			}
 			
 			#header {
-				background: #fff;
+				background-color: #fff;
 				text-align: center;
 				box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
 				width: 100%;
@@ -61,21 +69,28 @@
 				margin-top: 12px;
 				margin-bottom: 12px;
 				
-				background: #fff;
-				
-				padding: 4px;
+				background-color: #fff;
 				
 				position: relative;
+				
+				background-size: cover;
+				background-repeat-x: no-repeat;
+				background-repeat-y: no-repeat;
+				background-attachment: fixed;
+				
+				height: 150px;
 			}
 	
 			.se {
-				background: url(img/screenshotsenhanced/bg.jpeg) no-repeat center center fixed !important;
+				background-image: url(img/screenshotsenhanced/bg.jpeg);
 			}
 			
-			.cover {
-				background-size: cover;
-				height: 150px;
-				overflow: hidden;
+			.floatright {
+				float: right;
+			}
+			
+			.fillparentheight {
+				height: 100%;
 			}
 			
 			#container .card:first-child {
@@ -87,7 +102,7 @@
 			}
 			
 			.highlight {
-				background: #009688 !important;
+				background-color: rgb(0, 150, 136) !important;
 				font-weight: 700;
 				color: white;
 				font-size: x-large;
@@ -97,30 +112,122 @@
 				height: 150px;
 			}
 			
-			.b {
-				font-weight: 700;
-			}
-			
-			.stub {
-				background: rgba(0, 0, 0, 0.5);
+			.projectinfo .stub {
+				background-color: rgba(0, 0, 0, 0.5);
+				
 				padding: 4px;
 				float: left;
 				clear: left;
+				margin-bottom: 4px;
+				line-height: 1.2;
+			}
+			
+			.projectinfo .stub:first-child {
+				font-weight: 700;
+				font-size: large;
 			}
 			
 			.projectinfo {
-				margin: 12px;
 				color: white;
-			}
-			
-			.large {
-				font-size: large;
+				position: absolute;
+				left: 0;
+				max-width: calc(100% - 350px);
+				padding: 16px;
 			}
 			
 			a {
 				text-decoration: none;
+				cursor: pointer;
+				color: inherit;
+			}
+			
+			.projectlinks {
+				position: absolute;
+				right: 0;
+				height: 100%;
+			}
+			
+			.projectlinks ul, .projectlinks ul li {
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+				height: 100%;
+				box-sizing: border-box;
+			}
+			
+			.projectlinks ul {
+				padding: 16px 0;
+			}
+			
+			.projectlinks ul li {
+				width: 100px;
+				border-right: 1px solid #fff;
+				border-left: 1px solid #999;
+				float: left;
+				text-align: center;
+				color: white;
+				font-size: large;
+				font-weight: 700;
+				line-height: 5.9;
+			}
+			
+			.projectlinks ul li a {
+				border-bottom: 1px solid transparent;
+				transition: border-bottom 0.2s linear;
+			}
+			
+			.projectlinks ul li a:hover {
+				border-bottom: 1px solid white;
+			}
+			
+			.projectlinks ul li:first-child {
+				border-left: none;
+			}
+			
+			.projectlinks ul li:last-child {
+				border-right: none;
+			}
+			
+			@media screen and (max-width: 880px) {
+				
+				.stub {
+					max-width: none;
+				}
+				
+				.projectinfo {
+					max-width: none;
+				}
+				
+				.projectlinks {
+					top: 19px;
+					right: 19px;
+				}
+				
+				.projectlinks ul {
+					padding: 0;
+				}
+				
+				.projectlinks ul, .projectlinks li {
+					height: auto;
+				}
+				
+				.projectlinks ul li {
+					line-height: 1.3;
+					width: auto;
+					padding: 0 8px;
+				}
+				
+				.projectlinks ul li:first-child {
+					padding-left: 0;
+				}
+				
+				.projectlinks ul li:last-child {
+					padding-right: 0;
+				}
+				
 			}
 		</style>
+		
 	</head>
 	<body>
 		<div id="header">
@@ -128,18 +235,20 @@
 		</div>
 		
 		<div id="container">
-			<div class="card highlight">
-				Projects
-			</div>
-			
-			<a href="http://www.bit.ly/screenshotsenhanced">
-				<div class="card se cover">
-					<div class="projectinfo">
-						<span class="b stub large">Screenshots Enhanced</span>
-						<span class="stub">Improve the way screenshots work in Minecraft. Clear lag and be able to manage, share and take your pictures faster than ever.</span>
-					</div>
+			<div class="card se">
+				<div class="projectinfo">
+					<span class="stub">Screenshots Enhanced</span>
+					<span class="stub">Improve the way screenshots work in Minecraft. Clear lag and be able to manage, share and take your pictures faster than ever.</span>
 				</div>
-			</a>
+				
+				<div class="projectlinks">
+					<ul>
+						<li><a href="http://www.bit.ly/screenshotsenhanced">MCF</a></li>
+						<li><a href="http://www.bit.ly/screenshotsenhanced-pmc">PMC</a></li>
+						<li><a href="http://www.bit.ly/screenshotsenhanced-curseforge">CURSE</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>
