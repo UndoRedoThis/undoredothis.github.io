@@ -1,0 +1,131 @@
+﻿body {
+	width: 100%;
+	background: #eee;
+	margin: 0;
+	font-family: "Open Sans", sans-serif;
+	font-size: medium;
+	color: #333;
+	line-height: 1.4;
+}
+
+div {
+	box-sizing: border-box;
+}
+
+#header {
+	width: 100%;
+	background-color: white;
+	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
+	text-align: center;
+	padding: 24px;
+}
+
+#header img {
+	width: 400px;
+}
+
+#container {
+	width: 850px;
+	margin: 0 auto;
+}
+
+#container:first-child {
+	margin-top: 32px;
+}
+
+#container:last-child {
+	margin-bottom: 32px;
+}
+
+#container .card {
+	background: white;
+	border-bottom: 3px solid #ddd;
+	border-top: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	margin: 16px;
+	padding: 8px;
+}
+
+#navigation {
+	width: 100%;
+	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
+	padding: 4px 0;
+}
+
+#navigation ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+#navigation ul li {
+	display: inline;
+	padding: 0 8px;
+	border-bottom: 1px solid transparent;
+	transition: border-bottom .3s ease-in-out;
+}
+
+#navigation ul li:hover {
+	border-bottom: 1px solid #333;
+}
+
+iframe {
+	width: 100%;
+}
+
+.quote {
+	font-style: italic;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+h2 {
+	font-weight: 700;
+	font-size: x-large;
+}
+
+h3 {
+	font-weight: 700;
+	font-size: large;
+}
+
+h2 + *, h3 + *, * + h2, * + h3 {
+	margin-top: 8px;
+}
+
+.codepreview {
+	width: 100%;
+	font-family: "Courier New", monospace;
+	background-color: #ddd;
+	margin: 8px 0;
+	padding: 8px;
+}
+
+.inline {
+	width: auto;
+	margin: 0;
+	padding: 2px;
+	font-size: small;
+}
+
+.codepreview code {
+	display: block;
+	white-space: pre;
+}
+
+@media screen and (max-width: 832px) {
+	
+	#container {
+		width: 100%;
+	}
+	
+	#header img {
+		width: 100%;
+	}
+	
+}

@@ -1,0 +1,98 @@
+﻿<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>JSONScript</title>
+		
+		<link rel="apple-touch-icon" sizes="57x57" href="icons/apple-touch-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="icons/apple-touch-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="icons/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="icons/apple-touch-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="icons/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="icons/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="icons/apple-touch-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon-180x180.png">
+		<link rel="icon" type="image/png" href="icons/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="icons/favicon-96x96.png" sizes="96x96">
+		<link rel="icon" type="image/png" href="icons/favicon-16x16.png" sizes="16x16">
+		<link rel="manifest" href="icons/manifest.json">
+		<meta name="msapplication-TileColor" content="#2b5797">
+		<meta name="msapplication-TileImage" content="icons/mstile-144x144.png">
+		<meta name="theme-color" content="#ffffff">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta charset="utf-8">
+		
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700" rel="stylesheet" type="text/css">
+		
+		<link rel="stylesheet" href="style/reset.css" type="text/css">
+		<link rel="stylesheet" href="style/jscript.css" type="text/css">
+		
+		<script src="js/jsonscript-1.0.0.min.js"></script>
+	</head>
+	
+	<body>
+		<div id="header">
+			<img src="img/jsonscript.png">
+		</div>
+		
+		<div id="navigation">
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="docs">Documentation</a></li>
+				<li><a href="dls">Downloads</a></li>
+			</ul>
+		</div>
+		
+		<div id="container">
+			<div class="card">
+				<p class="quote">"Javascript is ugly. That's why I made it beautiful. Ugly programming languages shouldn't have the right to exist. Don't get me wrong, Javascript is a good, stable and functional language but it's more of a personality issue conflicting with the individuality of ... what? I am exceeding the character limit for inspiring quotes? Is there such thing like a limit? 512 characters? Shut up, that's my page and my rules."</p>
+			</div>
+			
+			<div class="card">
+				<iframe width="853" height="480" src="https://www.youtube.com/embed/-0wwMkmBpPA?rel=0" frameborder="0" allowfullscreen></iframe>
+			</div>
+			
+			<div class="card">
+				<h2>JSON and Javascript became one</h2>
+				
+				<p>That's right. JSON and Javascript finally marged into a good-looking markup-code-thingy. Believe it or not, every function and every object on this page was created using only one JSON object. You can right-click, view the page code and see for yourself. No, honestly, you should totally do that right now because I want you to believe me.</p>
+				<p>Did you do it? Great. Let's move on.</p>
+			</div>
+			
+			<div class="card">
+				<h2>What is JSONScript?</h2>
+				
+				<p>JSONScript converts JSON objects on your webpage into valid Javascript-usable objects, functions, numbers, strings or whatever you like. Defining a parsable object is simple. Just create an object with the JSONScript key and you're good to go.</p>
+				
+				<div class="codepreview">
+					<code>var myJsonScript = { "jsonscript": [] }</code>
+				</div>
+				
+				<p>JSONScript will recognize those objects and start to parse them as soon as the page has been loaded successfully. For more information about the certain types supported by JSONScript, please consider paying the documentation a visit.</p>
+			</div>
+			
+			<div class="card">
+				<h2>Working with JSONScript</h2>
+				
+				<h3>Basic structure</h3>
+				
+				<p>Every thing you want JSONScript to parse requires one fundamental key-value-assignment in order to work: <span class="codepreview inline">type</span>. There are six basic types which originate from some of Javascript's design: <span class="codepreview inline">object</span>, <span class="codepreview inline">function</span>, <span class="codepreview inline">number</span>, <span class="codepreview inline">string</span>, <span class="codepreview inline">array</span> and <span class="codepreview inline">call</span>. Once you get the drill, you'll recognize that there are a lot of similarities between each one of them.</p>
+			
+				<h3>Object</h3>
+				
+				<div class="codepreview">
+					<code>var myJsonScript = {</code>
+					<code>    "jsonscript" : [</code>
+					<code>        {</code>
+					<code>            "type" : "object",</code>
+					<code>            "name" : "myAwesomeObject"</code>
+					<code>            "children" : {[]}</code>
+					<code>        }</code>
+					<code>    ]</code>
+					<code>}</code>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
