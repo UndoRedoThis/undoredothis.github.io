@@ -94,7 +94,7 @@ h3 {
 	font-size: large;
 }
 
-h2 + *, h3 + *, * + h2, * + h3 {
+h2 + *, h3 + *, * + h2, * + h3, p + p {
 	margin-top: 8px;
 }
 
