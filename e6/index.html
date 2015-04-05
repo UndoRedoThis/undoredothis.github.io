@@ -1,0 +1,346 @@
+﻿<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>BGCropping</title>
+		
+		<link href="http://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet" type="text/css">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta charset="utf-8">
+		
+		<style type="text/css">
+			/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+			html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+		
+			body {
+				font-family: "Roboto Slab", sans-serif;
+				
+				background-color: #152F56;
+			}
+			
+			#header {
+				background-color: #284A81;
+				width: 100%;
+				text-align: center;
+				box-shadow: 0px 0px 16px 1px rgba(0, 0, 0, 0.5);
+				box-sizing: border-box;
+				padding: 32px 92px;
+			}
+			
+			.error {
+				color: red !important;
+			}
+			
+			#header #search {
+				width: 100%;
+				box-sizing: border-box;
+				font-size: 40px;
+				font-family: inherit;
+				font-weight: 700;
+				padding: 8px;
+				border: none;
+				border-radius: 8px;
+				outline: none;
+				color: #333;
+				
+				transition: color .4s;
+			}
+		
+			.crop {
+				width: 200px;
+				height: 200px;
+				background-size: cover;
+				position: relative;
+				color: white;
+				cursor: pointer;
+				background-repeat: no-repeat;
+				float: left;
+			}
+			
+			.crop:hover .overlay {
+				opacity: 1;
+			}
+			
+			.crop .overlay {
+				background-color: rgba(0, 0, 0, 0.7);
+				
+				width: inherit;
+				height: inherit;
+				
+				color: white;
+				font-weight: 700;
+				
+				text-align: center;
+				
+				display: table-cell;
+				vertical-align: middle;
+				
+				transition: opacity .4s;
+				
+				opacity: 0;
+			}
+			
+			.crop .overlay .pid {
+				font-size: x-large;
+				margin-bottom: 8px;
+			}
+			
+			.crop .overlay .pmeta {
+				font-size: small;
+			}
+			
+			.crop .overlay p {
+				margin: 0;
+			}
+			
+			.crop .overlay .pmeta .prating {
+				font-size: larger;
+				margin-bottom: 4px;
+			}
+			
+			.loading {
+				width: 100%;
+				text-align: center;
+				height: 150px;
+				transition: height .4s ease-out;
+			}
+			
+			.loading img {
+				width: 150px;
+				height: 150px;
+				margin: 32px;
+				-webkit-animation: spin 2s ease infinite;
+				-moz-animation: spin 2s ease infinite;
+				animation: spin 2s ease infinite;
+			}
+			
+			.disappear {
+				height: 0;
+			}
+			
+			@-moz-keyframes spin {
+				100% {
+					-moz-transform: rotate(360deg);
+				}
+			}
+			
+			@-webkit-keyframes spin {
+				100% {
+					-webkit-transform: rotate(360deg);
+				}
+			}
+			
+			@keyframes spin {
+				100% {
+					-webkit-transform: rotate(360deg);
+					transform: rotate(360deg);
+				}
+			}
+			
+			#wrapper {
+				width: 1200px;
+				margin: 0 auto;
+				padding: 32px 0;
+			}
+			
+			#container {
+				width: 100%;
+			}
+			
+			@media screen and (max-width: 1200px) {
+			
+				#wrapper {
+					width: 800px;
+				}
+			
+			}
+		</style>
+		
+		<script type="text/javascript">	
+			JSON.__proto__.safeParse = function(data) {
+				try {
+					var o = JSON.parse(data);
+					
+					if (o && typeof o === "object" && o !== null)
+						return o;
+				} catch (e) { }
+				
+				return false;
+			}
+			
+			Node.prototype.removeChildren = function() {
+				while (this.firstChild)
+					this.removeChild(this.firstChild);
+			}
+			
+			var doc = document;
+			var currentPage = 1;
+			var tags = "";
+			var loading = false;
+		
+			function getInnerHeight() {
+				return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+			}
+			
+			function getLastElementOfArray(arr) {
+				if (arr.length > 0)
+					return arr[arr.length - 1];
+				else
+					return false;
+			}
+			
+			function sendRequest(removeAll) {	
+				loading = true;
+			
+				var xmlhttp = new XMLHttpRequest();
+				var wrapper = document.getElementById("wrapper");
+				
+				if (removeAll)
+					wrapper.removeChildren();
+				
+				xmlhttp.onreadystatechange = function() {
+					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {						
+						var jsonRes;
+					
+						if ((jsonRes = JSON.safeParse(xmlhttp.responseText)) !== false) {
+							jsonRes.forEach(function(entry) {
+								var elem = PreviewBuilder.create(
+									entry.preview,
+									entry.id,
+									entry.rating,
+									entry.score,
+									entry.artist,
+									entry.url
+								);
+								
+								wrapper.appendChild(elem);
+							});
+						}
+						
+						loading = false;
+					}
+				}
+				
+				xmlhttp.open("GET", "api/listing.php?page=" + currentPage + "&tags=" + tags, true);
+				xmlhttp.send();
+			}
+			
+			// document.getElementById("wrapper").children[17].getBoundClientRect().top > window.innerHeight
+		
+			function PreviewBuilder() {
+				this.link = doc.createElement("a");
+				this.link.setAttribute("target", "_blank");
+			
+				this.preview = doc.createElement("div");
+				this.preview.className = "crop";
+				
+				var overlay = doc.createElement("div");
+				overlay.className = "overlay";
+				
+				this.preview.appendChild(overlay);
+				this.link.appendChild(this.preview);
+				
+				this.id = doc.createElement("p");
+				this.id.className = "pid";
+				
+				overlay.appendChild(this.id);
+				
+				var meta = doc.createElement("div");
+				meta.className = "pmeta";
+				
+				overlay.appendChild(meta);
+				
+				this.rating = doc.createElement("p");
+				this.rating.className = "prating";
+				
+				this.score = doc.createElement("p");
+				this.score.className = "pscore";
+				
+				this.favorites = doc.createElement("p");
+				this.favorites.className = "pfavorites";
+				
+				this.comments = doc.createElement("p");
+				this.comments.className = "pcomments";
+				
+				meta.appendChild(this.rating);
+				meta.appendChild(this.score);
+				meta.appendChild(this.favorites);
+				meta.appendChild(this.comments);
+			}
+			
+			PreviewBuilder.prototype.create = function(url, id, rating, score, favorites, comments) {
+				this.preview.style.backgroundImage = "url('" + url + "')";
+				this.id.textContent = "#" + id;
+				this.rating.textContent = (rating == "s") ? "Safe" : ((rating == "q") ? "Questionable" : "Explicit");
+				this.score.textContent = "Score: " + score;
+				this.favorites.textContent = "Artist" + ((favorites.length > 1) ? "s" : "") + ": " + ((favorites.length == 0) ? "none" : favorites.join(", "));
+				this.link.setAttribute("href", comments);
+				
+				return this.link.cloneNode(true);
+			}
+			
+			var PreviewBuilder = new PreviewBuilder();
+			
+			function checkLastCrop() {
+				var wrapper = document.getElementById("wrapper");
+				var lastElement;
+				
+				if ((lastElement = getLastElementOfArray(wrapper.children)) != false) {
+					if (lastElement.getBoundingClientRect().top < getInnerHeight()) {
+						if (!loading) {
+							++currentPage;
+							sendRequest(false);
+						}
+					}
+				}
+			}
+			
+			window.addEventListener("load", function() {
+				window.addEventListener("scroll", checkLastCrop);
+			
+				var searchInput = document.getElementById("search");
+				
+				searchInput.addEventListener("input", function() {
+					var currentTags = searchInput.value.trim().split(/\s+/);
+					if (currentTags.length > 6) {
+						searchInput.className = "error";
+					} else {
+						searchInput.className = "";
+					}
+				});
+				
+				searchInput.addEventListener("keypress", function(event) {
+					if (event.keyCode == 13) {
+						tags = searchInput.value.trim();
+						currentPage = 1;
+					
+						sendRequest(true);
+					}
+				});
+				
+				sendRequest(true);
+			});
+		</script>
+	</head>
+	<body>
+		<div id="container">
+			<div id="header">
+				<input id="search" type="text" placeholder="Search for some tags">
+			</div>
+		
+			<div id="wrapper">
+			<!--	<div class="crop" style="background-image: url('cute.png');">
+					<div class="overlay">
+						<p class="pid">#123456</p>
+						<div class="pmeta">
+							<p class="prating">Questionable</p>
+							<p class="pscore">1 score</p>
+							<p class="pfavorites">4 favorites</p>
+							<p class="pcomments">3 comments</p>
+						</div>
+					</div>
+				</div>-->
+			</div>
+		</div>
+	</body>
+</html>

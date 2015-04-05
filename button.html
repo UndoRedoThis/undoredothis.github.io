@@ -49,7 +49,18 @@
 				
 				background-color: white;
 				
-				transition: background-color 0.4s, color 0.4s;
+				transition: background-color 0.4s, color 0.4s, border 0.4s;
+			}
+			
+			.selected #button {
+				border: 12px solid white;
+				background-color: black;
+				color: white;
+			}
+			
+			.selected #button:hover {
+				background-color: white;
+				color: black;
 			}
 			
 			#button:hover {
@@ -67,12 +78,10 @@
 				var button = document.getElementById("button");
 				
 				button.onclick = function() {
-					if (button.className.indexOf("selected") == -1) {
-						button.className = "selected";
+					if (document.body.className.indexOf("selected") == -1) {
 						document.body.className = "selected";
 						button.textContent = "O";
 					} else {
-						button.className = "";
 						document.body.className = "";
 						button.textContent = "I";
 					}
