@@ -20,6 +20,14 @@ div {
 	padding: 24px;
 }
 
+#footer {
+	font-size: x-small;
+	color: #ccc;
+	text-align: center;
+	margin: 0 auto 16px auto;
+	max-width: 650px;
+}
+
 #header img {
 	width: 400px;
 }
@@ -54,7 +62,7 @@ div {
 }
 
 #navigation ul {
-	list-style-type: none;
+	list-style-type: disc;
 	margin: 0;
 	padding: 0;
 	text-align: center;
@@ -65,6 +73,11 @@ div {
 	padding: 0 8px;
 	border-bottom: 1px solid transparent;
 	transition: border-bottom .3s ease-in-out;
+}
+
+#docnavigation ul li {
+	list-style-type: circle;
+	margin-left: 40px;
 }
 
 #navigation ul li:hover {
@@ -104,6 +117,8 @@ h2 + *, h3 + *, * + h2, * + h3, p + p {
 	background-color: #ddd;
 	margin: 8px 0;
 	padding: 8px;
+	overflow-x: scroll;
+	overflow-y: hidden;
 }
 
 .inline {
@@ -116,6 +131,18 @@ h2 + *, h3 + *, * + h2, * + h3, p + p {
 .codepreview code {
 	display: block;
 	white-space: pre;
+}
+
+#hitmarker {
+	cursor: url(../img/hitmarker.png), pointer;
+}
+
+#dlsection {
+	margin-left: 16px;
+}
+
+#dlsection a:hover {
+	text-decoration: underline;
 }
 
 @media screen and (max-width: 832px) {

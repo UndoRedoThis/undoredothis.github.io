@@ -1,0 +1,299 @@
+﻿<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Documentation - JSONScript</title>
+		
+		<link rel="apple-touch-icon" sizes="57x57" href="../icons/apple-touch-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="../icons/apple-touch-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="../icons/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="../icons/apple-touch-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="../icons/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="../icons/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="../icons/apple-touch-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="../icons/apple-touch-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="../icons/apple-touch-icon-180x180.png">
+		<link rel="icon" type="image/png" href="../icons/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="../icons/favicon-96x96.png" sizes="96x96">
+		<link rel="icon" type="image/png" href="../icons/favicon-16x16.png" sizes="16x16">
+		<link rel="manifest" href="../icons/manifest.json">
+		<meta name="msapplication-TileColor" content="#2b5797">
+		<meta name="msapplication-TileImage" content="../icons/mstile-144x144.png">
+		<meta name="theme-color" content="#ffffff">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta charset="utf-8">
+		
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700" rel="stylesheet" type="text/css">
+		
+		<link rel="stylesheet" href="../style/reset.css" type="text/css">
+		<link rel="stylesheet" href="../style/jscript.css" type="text/css">
+		
+		<script src="../js/jsonscript-1.0.0.js"></script>
+		
+		<script>
+			// too lazy to use my own api. so here, have some bare bones js.
+		
+			var hitmarker = new Audio("hitmarker.wav");
+			hitmarker.preload = hitmarker.loop = true;
+		
+			window.onload = function() {
+				var secret = document.querySelector("#hitmarker");
+				
+				secret.onmouseenter = function() {
+					hitmarker.play();
+				}
+				
+				secret.onmouseleave = function() {
+					hitmarker.pause();
+				}
+			}
+		</script>
+	</head>
+	
+	<body>
+		<div id="header">
+			<img src="../img/jsonscript.png">
+		</div>
+		
+		<div id="navigation">
+			<ul>
+				<li><a href="../">Home</a></li>
+				<li><a href="#">Documentation</a></li>
+				<li><a href="../dls">Downloads</a></li>
+			</ul>
+		</div>
+		
+		<div id="container">			
+			<div class="card" id="docnavigation">
+				<h2>Table of contents</h2>
+				
+				<ul>
+					<li><a href="#basics">Getting the basics</a>
+						<ul>
+							<li><a href="#basics-object">The JSONScript object</a></li>
+							<li><a href="#basics-struct">Object structure</a></li>
+							<li><a href="#basics-children">The children key</a></li>
+						</ul>
+					</li>
+					<li><a href="#types">List of types</a>
+						<ul>
+							<li><a href="#types-object">Object</a></li>
+							<li><a href="#types-string">String</a></li>
+							<li><a href="#types-number">Number</a></li>
+							<li><a href="#types-array">Array</a></li>
+							<li><a href="#types-function">Function</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="card">
+				<h2 id="basics">Getting the basics</h2>
+				
+				<h3 id="basics-object">The JSONScript object</h3>
+				
+				<p>Fortunately enough, JSONScript, once added to your website, adds one new object with only one new function to memorize.</p>
+				
+				<div class="codepreview">
+					<code>JSONScript.parse( jsonArray [, scope ] );</code> 
+				</div>
+				
+				<p>The <span class="codepreview inline">parse()</span> function holds two arguments: <span class="codepreview inline">jsonArray</span> which is mandatory and <span class="codepreview inline">scope</span> which can be added voluntarily. The former argument contains all the parsable objects stored in a JSON array which the API will evaluate. The latter defines the scope to which the parsed JSON objects will be appended. If <span id="hitmarker">no scope</span> is defined, then the global scope will be selected.</p>
+				
+				<p>When called, the <span class="codepreview inline">parse()</span> function will evaluate all the objects provided by the <span class="codepreview inline">jsonArray</span> argument and add them to the defined scope. That's everything you need to know. Long story short, the API really does a lot so you don't need to remember long and uberly complicated function and object names.</p>
+			
+				<h3 id="basics-struct">Object structure</h3>
+				
+				<p>Every JSON object within the <span class="codepreview inline">jsonArray</span> argument needs to follow a certain structure as follows.</p>
+				
+				<div class="codepreview">
+					<code>{</code> 
+					<code>    type : "yourTypeHere",</code>
+					<code>    name : "yourNameHere"</code>
+					<code>}</code>
+				</div>
+				
+				<p><span class="codepreview inline">type</span> and <span class="codepreview inline">name</span> are the two keys every JSON object requires in order to be considered parsable by the API no matter the objects' type. Of course, there are several other keys which are exclusive to several different types, but those are named in the list of types below. There's one exception to said rule referring to the <span class="codepreview inline">array</span> type which is mentioned in the section concerning the <span class="codepreview inline">array</span> type itself.</p>
+				
+				<p><span class="codepreview inline">type</span> tells the API how to parse the JSON object. There are five different types as of the current version: <span class="codepreview inline">object</span>, <span class="codepreview inline">string</span>, <span class="codepreview inline">number</span>, <span class="codepreview inline">array</span> and <span class="codepreview inline">function</span> which are explained in detail below. <span class="codepreview inline">name</span> declares the variables' name to which the parsed JSON object will be assigned to. So basically ...</p>
+				
+				<div class="codepreview">
+					<code>{</code> 
+					<code>    type : "object",</code>
+					<code>    name : "myCoolObject"</code>
+					<code>}</code>
+				</div>
+				
+				<p>.. is equivalent to ...</p>
+				
+				<div class="codepreview">
+					<code>var myCoolObject = {}</code> 
+				</div>
+				
+				<p>Although you might think that the first example is way too over-complicated, then you shall not worry. This example just shows how beautiful your code will look using JSONScript as your new favorite API.</p>
+			
+				<h3 id="basics-children">The children key</h3>
+				
+				<p>Every JSON object can define a <span class="codepreview inline">children</span> array which is structurally the same like the root array. Its purpose is to add children to JSON objects of your choice. For example, here's one working example on how to define a person object with a certain age.</p>
+				
+				<div class="codepreview">
+					<code>JSONScript.parse([</code> 
+					<code>    {</code>
+					<code>        type : "object",</code>
+					<code>        name : "prettyNiceGuy",</code>
+					<code>        children : [</code>
+					<code>            {</code>
+					<code>                type : "number",</code>
+					<code>                name : "age",</code>
+					<code>                value : "23"</code>
+					<code>            }</code>
+					<code>        ]</code>
+					<code>    }</code>
+					<code>]);</code>
+				</div>
+				
+				<p>In pure Javascript, it would look like this. The result those two operations return would be the same.</p>
+				
+				<div class="codepreview">
+					<code>var prettyNiceGuy = { age : 23 };</code>
+				</div>
+				
+				Cool stuff, eh?
+			</div>
+			
+			<div class="card">
+				<h2 id="types">List of types</h2>
+				
+				<h3 id="types-object">Object</h3>
+				
+				<p>The <span class="codepreview inline">object</span> type requires no further keys to be set apart from the default ones. This type is most useful when used together with the optional <span class="codepreview inline">children</span> key.</p>
+			
+				<div class="codepreview">
+					<code>// example to demonstrate the type "object". in pure js it looks like this:</code>
+					<code>// var foobar = {}; </code>
+					<code> </code>
+					<code>JSONScript.parse([</code> 
+					<code>    {</code>
+					<code>        type : "object",</code>
+					<code>        name : "foobar"</code>
+					<code>    }</code>
+					<code>]);</code>
+				</div>
+				
+				<h3 id="types-string">String</h3>
+				
+				<p>The <span class="codepreview inline">string</span> type requires the <span class="codepreview inline">value</span> key to be set including the default ones. The value of the <span class="codepreview inline">value</span> key represents the content of the string once parsed.</p>
+				
+				<div class="codepreview">
+					<code>// example to demonstrate the type "string". in pure js it looks like this:</code>
+					<code>// var theanswer = "fortytwo"; </code>
+					<code> </code>
+					<code>JSONScript.parse([</code> 
+					<code>    {</code>
+					<code>        type : "string",</code>
+					<code>        name : "theanswer",</code>
+					<code>        value : "fortytwo"</code>
+					<code>    }</code>
+					<code>]);</code>
+				</div>
+				
+				<h3 id="types-string">Number</h3>
+				
+				<p>The <span class="codepreview inline">number</span> type requires the <span class="codepreview inline">value</span> key to be set including the default ones. The value of the <span class="codepreview inline">value</span> key represents the numerical value once parsed. The <span class="codepreview inline">number</span> type differentiates integers from floats. If <span class="codepreview inline">value</span> is a float, then it will automatically switch to the float type instead of the integer type. However, this procedure will only be executed if needed at all. If <span class="codepreview inline">value</span> isn't a float, then it will be parsed as a normal integer.</p>
+				
+				<div class="codepreview">
+					<code>// example to demonstrate the type "number". in pure js it looks like this:</code>
+					<code>// var someinteger = 23; </code>
+					<code> </code>
+					<code>JSONScript.parse([</code> 
+					<code>    {</code>
+					<code>        type : "number",</code>
+					<code>        name : "someinteger",</code>
+					<code>        value : "23"</code>
+					<code>    }</code>
+					<code>]);</code>
+				</div>
+				
+				<div class="codepreview">
+					<code>// here, the number returned is actually a float without changing the JSON object type</code>
+					<code>// var somefloatwhichactuallyisntafloatbutitmightbetrue = 23.4; </code>
+					<code> </code>
+					<code>JSONScript.parse([</code> 
+					<code>    {</code>
+					<code>        type : "number",</code>
+					<code>        name : "somefloatwhichactuallyisntafloatbutitmightbetrue",</code>
+					<code>        value : "23.4"</code>
+					<code>    }</code>
+					<code>]);</code>
+				</div>
+				
+				Furthermore, if <span class="codepreview inline">value</span> is not a float but an integer, then a <span class="codepreview inline">radix</span> key can be supplied in order to define a number system.
+				
+				<div class="codepreview">
+					<code>// doing something with radix (result is 157)</code>
+					<code> </code>
+					<code>JSONScript.parse([</code> 
+					<code>    {</code>
+					<code>        type : "number",</code>
+					<code>        name : "radixNumber",</code>
+					<code>        value : "94",</code>
+					<code>        radix : "17"</code>
+					<code>    }</code>
+					<code>]);</code>
+				</div>
+				
+				<h3 id="types-array">Array</h3>
+				
+				<p>The <span class="codepreview inline">array</span> type requires the <span class="codepreview inline">children</span> key to be set including the default ones. The value of the <span class="codepreview inline">children</span> key represents an array similar to the root array with the only exception that the JSON objects contained within don't require a <span class="codepreview inline">name</span> key since they're being indexed by the result array itself.</p>
+				
+				<div class="codepreview">
+					<code>// example to demonstrate the type "array". in pure js it looks like this:</code>
+					<code>// var coolArray = [ 1234, "much wow" ]; </code>
+					<code> </code>
+					<code>JSONScript.parse([</code> 
+					<code>    {</code>
+					<code>        type : "array",</code>
+					<code>        name : "coolArray",</code>
+					<code>        children : [</code>
+					<code>            {</code>
+					<code>                type : "number",</code>
+					<code>                value : "1234"</code>
+					<code>            },</code>
+					<code>            {</code>
+					<code>                type : "string",</code>
+					<code>                value : "much wow"</code>
+					<code>            }</code>
+					<code>        ]</code>
+					<code>    }</code>
+					<code>]);</code>
+				</div>
+				
+				<h3 id="types-function">Function</h3>
+				
+				<p>The <span class="codepreview inline">function</span> type requires the <span class="codepreview inline">args</span> key and the <span class="codepreview inline">body</span> key to be set including the default ones. The value of the <span class="codepreview inline">args</span> key represents an array containing strings for the functions' argument names. The value of the <span class="codepreview inline">body</span> key represents an array containing strings for the functions' code to run once executed. Every new line must be separated by creating a new item in the <span class="codepreview inline">body</span> array. Apart from that, there's no big difference comparing to writing normal JS code.</p>
+				
+				<div class="codepreview">
+					<code>// example to demonstrate the type "function". in pure js it looks like this:</code>
+					<code>// function tellMe(something) { alert(something); } </code>
+					<code> </code>
+					<code>JSONScript.parse([</code> 
+					<code>    {</code>
+					<code>        type : "function",</code>
+					<code>        name : "tellMe",</code>
+					<code>        args : [ </code>
+					<code>            "something"</code>
+					<code>        ],</code>
+					<code>        body : [</code>
+					<code>            "alert(something);"</code>
+					<code>        ]</code>
+					<code>    }</code>
+					<code>]);</code>
+				</div>
+			</div>
+		</div>
+		
+		<div id="footer">
+			<p>Created by an almost 17-year-old German coding crack called Maximilian Jugl. Neither this site nor the code should be taken seriously. I do not endorse the usage of JSONScript by any means possible and I can't be held responsible for the liability of damage caused by any piece of information on this website.</p>
+		</div>
+	</body>
+</html>

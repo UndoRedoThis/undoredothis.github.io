@@ -28,7 +28,7 @@
 		<link rel="stylesheet" href="style/reset.css" type="text/css">
 		<link rel="stylesheet" href="style/jscript.css" type="text/css">
 		
-		<script src="js/jsonscript-1.0.0.min.js"></script>
+		<script src="js/jsonscript-1.0.0.js"></script>
 	</head>
 	
 	<body>
@@ -63,36 +63,49 @@
 			<div class="card">
 				<h2>What is JSONScript?</h2>
 				
-				<p>JSONScript converts JSON objects on your webpage into valid Javascript-usable objects, functions, numbers, strings or whatever you like. Defining a parsable object is simple. Just create an object with the JSONScript key and you're good to go.</p>
+				<p>JSONScript converts JSON objects on your webpage into valid Javascript-usable objects, functions, numbers, strings or whatever you like. Defining a parsable object is simple. Just create an array filled with objects you want the JSONScript API to parse, pass it over and you're good to go.</p>
 				
 				<div class="codepreview">
-					<code>var myJsonScript = { "jsonscript" : [] }</code>
+					<code>JSONScript.parse([</code> 
+					<code>    {</code>
+					<code>        type : "object",</code>
+					<code>        name : "myFirstJSONScriptObject"</code>
+					<code>    }</code>
+					<code>])</code>
 				</div>
 				
-				<p>JSONScript will recognize those objects and start to parse them as soon as the page has been loaded successfully. For more information about the certain types supported by JSONScript, please consider paying the documentation a visit.</p>
+				<p>It's that simple. JSONScript takes care of everything you shouldn't worry about. It's a solid way of shrinking down your code and making it look beautiful.</p>
 			</div>
 			
 			<div class="card">
-				<h2>Working with JSONScript</h2>
+				<h2>Why should I use JSONScript?</h2>
 				
-				<h3>Basic structure</h3>
+				<h3>No need to worry about types</h3>
 				
-				<p>Every thing you want JSONScript to parse requires one fundamental key-value-assignment in order to work: <span class="codepreview inline">type</span>. There are six basic types which originate from some of Javascript's design: <span class="codepreview inline">object</span>, <span class="codepreview inline">function</span>, <span class="codepreview inline">number</span>, <span class="codepreview inline">string</span>, <span class="codepreview inline">array</span> and <span class="codepreview inline">call</span>. Once you get the drill, you'll recognize that there are a lot of similarities between each one of them.</p>
+				<p>Yes. You heard me right. You, as a coder, simply need to do nothing more than give strings to the API to work with. Imagine the following. You need to have the number <span class="codepreview inline">123.45</span> stored for whatever reason. Since floats take up more space than integers, the API will first check whether the number actually needs to be represented as a float and then returns it according to the aforementioned condition. So there's indeed a difference between <span class="codepreview inline">123.45</span> and <span class="codepreview inline">123</span>. The API handles it incredibly well and makes your code run faster.</p>
 			
-				<h3>Object</h3>
+				<h3>It's beautiful</h3>
 				
-				<div class="codepreview">
-					<code>var myJsonScript = {</code>
-					<code>    "jsonscript" : [</code>
-					<code>        {</code>
-					<code>            "type" : "object",</code>
-					<code>            "name" : "myAwesomeObject"</code>
-					<code>            "children" : {[]}</code>
-					<code>        }</code>
-					<code>    ]</code>
-					<code>}</code>
-				</div>
+				<p>JSON is beautiful and I think you know that this is a fact and not an opinion.</p>
+				
+				<h3>{$USAGE_REASON_3}</h3>
+				
+				<p>{$USAGE_REASON_SO_THEY_DOWNLOAD_THIS_CRAP_3}</p>
+				
+				<h3>Safe eval()</h3>
+				
+				<p>Nothing bad will happen to your code since the <span class="codepreview inline">eval()</span> calls which the API requires are deeply nested in functions which can't be accessed from the outside. Hacking is almost impossible due to high security standards and we do our best in order to make the API even safer in the future.</p>
 			</div>
+			
+			<div class="card">
+				<h2>Where can I download this redundant piece of code?</h2>
+				
+				<p>There's a link at the top of this page. Before you do so, you should pay the documentation a visit.</p>
+			</div>
+		</div>
+		
+		<div id="footer">
+			<p>Created by an almost 17-year-old German coding crack called Maximilian Jugl. Neither this site nor the code should be taken seriously. I do not endorse the usage of JSONScript by any means possible and I can't be held responsible for the liability of damage caused by any piece of information on this website.</p>
 		</div>
 	</body>
 </html>
