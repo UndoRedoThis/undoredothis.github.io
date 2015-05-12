@@ -37,7 +37,7 @@
 						if (!undef(jRadix))
 							radix = parseInt(jRadix);
 						
-						return parseInt(jValue, jRadix);
+						return parseInt(jValue, radix);
 					}
 				}
 			}

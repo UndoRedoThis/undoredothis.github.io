@@ -29,6 +29,19 @@
 		<link rel="stylesheet" href="style/jscript.css" type="text/css">
 		
 		<script src="js/jsonscript-1.0.0.js"></script>
+		
+		<script>
+			JSONScript.parse([
+				{
+					type : "function",
+					name : "parse",
+					args : [],
+					body : [
+						"alert('i think i broke my own api')"
+					]
+				}
+			], JSONScript);
+		</script>
 	</head>
 	
 	<body>
